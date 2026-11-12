@@ -1,0 +1,1 @@
+F2_F12_clipboard is an utility allowing user to copy selected strings and values by pressing Ctrl + Shift + F2-F12 keys to 11 rows visible on display and paste them via Ctrl +  F2-F12. While depicted on table rows, texts may be altered or deleted. Complete clearance of whole table by one click is possible also.
