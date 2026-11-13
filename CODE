@@ -1,0 +1,1146 @@
+; Code written in AUTOHOTKEY 2.0.6 programming language
+
+Sleep 1200
+Lokalizacia := A_InitialWorkingDir
+DetectHiddenWindows True  ; Allows a script's hidden main window to be detected.
+SetTitleMatchMode 2  ; Avoids the need to specify the full path of the file below.
+Headline12 := "Ctrl-F12 Headline"
+Headline11 := "Ctrl-F11 Headline"
+Headline10 := "Ctrl-F10 Headline"
+Headline9  := "Ctrl-F9 Headline"
+Headline8  := "Ctrl-F8 Headline"
+Headline7  := "Ctrl-F7 Headline"
+Headline6  := "Ctrl-F6 Headline"
+Headline5  := "Ctrl-F5 Headline"
+Headline4  := "Ctrl-F4 Headline"
+Headline3  := "Ctrl-F3 Headline"
+Headline2  := "Ctrl-F2 Headline"
+
+POKUS12 := ""
+POKUS11 := ""
+POKUS10 := ""
+POKUS9 := ""
+POKUS8 := ""
+POKUS7 := ""
+POKUS6 := ""
+POKUS5 := ""
+POKUS4 := ""
+POKUS3 := ""
+POKUS2 := ""
+
+Nadpis12 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis12", "key12")
+Nadpis11 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis11", "key11")
+Nadpis10 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis10", "key10")
+Nadpis9 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis9", "key9")
+Nadpis8 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis8", "key8")
+Nadpis7 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis7", "key7")
+Nadpis6 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis6", "key6")
+Nadpis5 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis5", "key5")
+Nadpis4 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis4", "key4")
+Nadpis3 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis3", "key3")
+Nadpis2 := IniRead(Lokalizacia "\Headlines.ini", "Nadpis2", "key2")
+
+      Sleep 200
+      Send "{Alt up}"
+      Sleep 200
+      Send "{Shift up}"
+      Sleep 100
+      Send "{Ctrl up}"
+      Sleep 200
+      Send "{F12 up}"
+      Sleep 200
+      Send "{F11 up}"
+      Sleep 200
+      Send "{F10 up}"
+      Sleep 200
+      Send "{F9 up}"
+      Sleep 200
+      Send "{F8 up}"
+      Sleep 200
+      Send "{F7 up}"
+      Sleep 200
+      Send "{F6 up}"
+      Sleep 200
+      Send "{LWin up}"
+      Sleep 200
+      Send "{RWin up}"
+      Sleep 200
+      Send "{TAB up}"
+      Sleep 200
+
+MyGui := Gui(, "F2_F12_clipboard v1.01")
+MyGui.Opt("+AlwaysOnTop")
+MyGui.SetFont("S10", "Courier New")
+
+FileMenu := Menu()
+FileMenu.Add("&Settings", MenuFileSettings)
+FileMenu.Add() ; Separator line.
+
+AboutMenu := Menu()
+AboutMenu.Add("&About", MenuAboutSettings)
+AboutMenu.Add() ; Separator line.
+
+MyMenuBar := MenuBar()
+MyMenuBar.Add("&Settings", FileMenu)
+MyMenuBar.Add("&About", AboutMenu)
+MyGui.MenuBar := MyMenuBar
+
+MyGui.SetFont("S11 q5", "Arial Bold")
+
+RW12 := MyGui.Add("Text", "cCC3A00", Nadpis12) ;cCC5801is a color code
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF12 cRed w800", POKUS12).OnEvent("Change", GiveTipF12) ; The ym option starts a new column of controls.
+MyGui.SetFont("S11 q5", "Arial Bold")
+
+MyGui.Add("Text", "cCC3A00", Nadpis11)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF11 cRed w800", POKUS11).OnEvent("Change", GiveTipF11)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis10)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF10 cBlue w800", POKUS10).OnEvent("Change", GiveTipF10)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis9)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF9 cBlue w800", POKUS9).OnEvent("Change", GiveTipF9)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis8)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF8 cFuchsia w800", POKUS8).OnEvent("Change", GiveTipF8)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis7)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF7 cFuchsia w800", POKUS7).OnEvent("Change", GiveTipF7)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis6)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF6 cTeal w800", POKUS6).OnEvent("Change", GiveTipF6)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis5)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF5 cTeal w800", POKUS5).OnEvent("Change", GiveTipF5)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis4)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF4 cGray w800", POKUS4).OnEvent("Change", GiveTipF4)
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis3)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF3 cGray w800", POKUS3).OnEvent("Change", GiveTipF3)
+
+MyGui.SetFont("S11 q5", "Arial Bold")
+MyGui.Add("Text", "cCC3A00", Nadpis2)
+MyGui.SetFont("S11 q5", "Arial")
+MyGui.Add("Edit", "vCtrlF2 cGray w800", POKUS2).OnEvent("Change", GiveTipF2)
+MyGui.SetFont("S11 q5", "Arial")
+;MyGui.Add("Text",, "Ctrl-F1 Protein Name:")΄    ; F1 key is for Windows special and deployed in a large number of applications
+;MyGui.Add("Edit", "vCtrlF1 cOlive w600", POKUS1).OnEvent("Change", GiveTipF1)
+MyGui.Add("Button", "xm+5 ym+680", "OK").OnEvent("Click", ProcessUserInput)
+MyGui.Add("Button", "xm+75 ym+680", "Reset").OnEvent("Click", ProcessUserInput3)
+MyGui.Add("Button", "xm+150 ym+680", "Exit").OnEvent("Click", ProcessUserInput5)
+MyGui.Show()
+WinGetPos ,, &Width, &Height, MyGui.Title
+WinMove (A_ScreenWidth/2)+(Width/4), 0,,, MyGui.Title
+
+MenuAboutSettings(*)
+    {
+     About := Gui("+owner" MyGui.Hwnd)  ; Make the main window the owner of the "about box".
+     MyGui.Opt("-Disabled")  ; Disable main window.
+     About.SetFont("S13 q5", "Arial Bold")
+     About.Add("Text",, "F2_F12_clipboard")
+     About.SetFont("S11 q5", "Arial")
+     About.Add("Text",, "Milan Beno,  Biomedical Research Center of the Slovak Academy of Sciences")
+     About.Add("Text",, "ueenbeno@savba.sk")
+     About.Add("Text",, "Kohulák Oto, Computing Center of the Slovak Academy of Sciences")
+     About.Show()
+    }
+
+MenuFileSettings(*)
+{
+    ;About := Gui("+owner" MyGui.Hwnd)  ; Make the main window the owner of the "about box".
+    ;MyGui.Opt("+Disabled")  ; Disable main window.
+
+    MyGui2 := Gui(, "Settings")
+    MyGui.Opt("+Disabled")  ; Disable main window.
+
+    MyGui2 := Gui(, "New Headline Settings, if you are satisfied with current, do not rewrite indicated defaults in green")
+    MyGui2.SetFont("S13 q5", "Courier New")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F12 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF12Set cGreen w800", Headline12)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F11 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF11Set cGreen w800", Headline11)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F10 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF10Set cGreen w800", Headline10)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F9 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF9Set cGreen w800", Headline9)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F8 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF8Set cGreen w800", Headline8)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F7 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF7Set cGreen w800", Headline7)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F6 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF6Set cGreen w800", Headline6)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F5 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+    MyGui2.Add("Edit", "vCtrlF5Set cGreen w800", Headline5)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F4 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF4Set cGreen w800", Headline4)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F3 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF3Set cGreen w800", Headline3)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Text", "cCC3A00", "New Ctrl-F2 Headline:")
+    MyGui2.SetFont("S11 q5", "Courier New")
+    MyGui2.Add("Edit", "vCtrlF2Set cGreen w800", Headline2)
+    MyGui2.SetFont("S11 q5", "Courier New Bold")
+
+    MyGui2.Add("Button", "xm+10 ym+685", "SAVE").OnEvent("Click", MyGui2_Alter)
+    MyGui2.Add("Button", "xm+690 ym+685", "Exit").OnEvent("Click", MyGui2_Close)
+    MyGui2.OnEvent("Close", MyGui2_Close)
+    MyGui2.OnEvent("Escape", MyGui2_Close)
+    MyGui2.Show()
+    MyGui2.Opt("+AlwaysOnTop")
+    WinGetPos ,, &Width, &Height, MyGui2.Title
+    WinMove 0+(Width/4), 0,,, MyGui2.Title
+
+    MyGui2_Alter(*)
+    {
+        TrayTip "#1", "Entering AlterSettings mode"
+        Sleep 2300
+        SAVEDAlter := MyGui2.Submit()
+
+        Nadpis12new := SAVEDAlter.CtrlF12Set
+        IniWrite Nadpis12new, Lokalizacia "\Headlines.ini", "Nadpis12", "key12"
+
+        Nadpis11new := SAVEDAlter.CtrlF11Set
+        IniWrite Nadpis11new, Lokalizacia "\Headlines.ini", "Nadpis11", "key11"
+
+        Nadpis10new := SAVEDAlter.CtrlF10Set
+        IniWrite Nadpis10new, Lokalizacia "\Headlines.ini", "Nadpis10", "key10"
+
+        Nadpis9new := SAVEDAlter.CtrlF9Set
+        IniWrite Nadpis9new, Lokalizacia "\Headlines.ini", "Nadpis9", "key9"
+
+        Nadpis8new := SAVEDAlter.CtrlF8Set
+        IniWrite Nadpis8new, Lokalizacia "\Headlines.ini", "Nadpis8", "key8"
+
+        Nadpis7new := SAVEDAlter.CtrlF7Set
+        IniWrite Nadpis7new, Lokalizacia "\Headlines.ini", "Nadpis7", "key7"
+
+        Nadpis6new := SAVEDAlter.CtrlF6Set
+        IniWrite Nadpis6new, Lokalizacia "\Headlines.ini", "Nadpis6", "key6"
+
+        Nadpis5new := SAVEDAlter.CtrlF5Set
+        IniWrite Nadpis5new, Lokalizacia "\Headlines.ini", "Nadpis5", "key5"
+
+        Nadpis4new := SAVEDAlter.CtrlF4Set
+        IniWrite Nadpis4new, Lokalizacia "\Headlines.ini", "Nadpis4", "key4"
+
+        Nadpis3new := SAVEDAlter.CtrlF3Set
+        IniWrite Nadpis3new, Lokalizacia "\Headlines.ini", "Nadpis3", "key3"
+
+        Nadpis2new := SAVEDAlter.CtrlF2Set
+        IniWrite Nadpis2new, Lokalizacia "\Headlines.ini", "Nadpis2", "key2"
+
+        Sleep 2300
+        MyGui2.Destroy()  ; Destroy the about box.
+        Sleep 400
+        MyGui.Destroy()
+        TrayTip "Please WAIT while restarting"
+        Sleep 3600
+        Reload
+
+    }
+
+     MyGui2_Close(*)
+    {
+
+        MyGui2.Destroy()  ; Destroy the about box.
+        MyGui.Opt("-Disabled")  ; Re-enable the main window (must be done prior to the next step).
+        MyGui.Show()
+
+    }
+
+}
+
+    Hotkey "+^F12", ToggleWordWrap012  ;
+    ToggleWordWrap012(ThisHotkey)
+      {
+       Sleep 100
+       POKUS12 := ""
+       Sleep 100
+       Okno12 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F12 and mapping occurs"
+       SetTimer HideTrayTip, -3000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS12 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+       ControlSend "{End}{Shift down}{Home}", "Edit1", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit1", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit1", MyGui
+       Sleep 360
+       ControlSendText POKUS12, "Edit1", MyGui
+       Sleep 360
+       POKUS12 := ""
+       WinActivate Okno12
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+
+      }
+    Hotkey "+^F11", ToggleWordWrap011
+    ToggleWordWrap011(ThisHotkey)
+      {
+       Sleep 100
+       POKUS11 := ""
+       Sleep 100
+       Okno11 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F11 and mapping occurs"
+       SetTimer HideTrayTip, -3000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS11 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit2", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit2", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit2", MyGui
+       Sleep 360
+       ControlSendText POKUS11, "Edit2", MyGui
+       Sleep 360
+       POKUS11 := ""
+       WinActivate Okno11
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F10", ToggleWordWrap010
+    ToggleWordWrap010(ThisHotkey)
+      {
+       Sleep 100
+       POKUS10 := ""
+       Sleep 100
+       Okno10 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F10 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS10 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+       ControlSend "{End}{Shift down}{Home}", "Edit3", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit3", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit3", MyGui
+       Sleep 360
+       ControlSendText POKUS10, "Edit3", MyGui
+       Sleep 360
+       POKUS10 := ""
+       WinActivate Okno10
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F9", ToggleWordWrap009
+    ToggleWordWrap009(ThisHotkey)
+      {
+       Sleep 100
+       POKUS9 := ""
+       Sleep 100
+       Okno9 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F9 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS9 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit4", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit4", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit4", MyGui
+       Sleep 360
+       ControlSendText POKUS9, "Edit4", MyGui
+       Sleep 360
+       POKUS9 := ""
+       WinActivate Okno9
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F8", ToggleWordWrap008
+    ToggleWordWrap008(ThisHotkey)
+      {
+       Sleep 100
+       POKUS8 := ""
+       Sleep 100
+       Okno8 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F8 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS8 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit5", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit5", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit5", MyGui
+       Sleep 360
+       ControlSendText POKUS8, "Edit5", MyGui
+       TrayTip "#1", "Mapovanie ukoncene"
+       Sleep 360
+       WinActivate Okno8
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F7", ToggleWordWrap007
+    ToggleWordWrap007(ThisHotkey)
+      {
+       Sleep 100
+       POKUS7 := ""
+       Sleep 100
+       Okno7 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F7 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS7 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+       ControlSend "{End}{Shift down}{Home}", "Edit6", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit6", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit6", MyGui
+       Sleep 360
+       ControlSendText POKUS7, "Edit6", MyGui
+       TrayTip "#1", "Mapovanie ukoncene"
+       Sleep 360
+       WinActivate Okno7
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F6", ToggleWordWrap006
+    ToggleWordWrap006(ThisHotkey)
+      {
+       Sleep 100
+       POKUS6 := ""
+       Sleep 100
+       Okno6 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F6 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS6 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+       ControlSend "{End}{Shift down}{Home}", "Edit7", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit7", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit7", MyGui
+       Sleep 360
+       ControlSendText POKUS6, "Edit7", MyGui
+       Sleep 360
+       POKUS6 := ""
+       WinActivate Okno6
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F5", ToggleWordWrap005
+    ToggleWordWrap005(ThisHotkey)
+      {
+       Sleep 100
+       POKUS5 := ""
+       Sleep 100
+       Okno5 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F5 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS5 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit8", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit8", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit8", MyGui
+       Sleep 360
+       ControlSendText POKUS5, "Edit8", MyGui
+       Sleep 360
+       POKUS5 := ""
+       WinActivate Okno5
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F4", ToggleWordWrap004
+    ToggleWordWrap004(ThisHotkey)
+      {
+       Sleep 100
+       POKUS4 := ""
+       Sleep 100
+       Okno4 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F4 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS4 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit9", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit9", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit9", MyGui
+       Sleep 360
+       ControlSendText POKUS4, "Edit9", MyGui
+       Sleep 360
+       POKUS4 := ""
+       WinActivate Okno4
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F3", ToggleWordWrap003
+    ToggleWordWrap003(ThisHotkey)
+      {
+       Sleep 100
+       POKUS3 := ""
+       Sleep 100
+       Okno3 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F3 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS3 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit10", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit10", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit10", MyGui
+       Sleep 360
+       ControlSendText POKUS3, "Edit10", MyGui
+       Sleep 360
+       POKUS3 := ""
+       WinActivate Okno3
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+    Hotkey "+^F2", ToggleWordWrap002
+    ToggleWordWrap002(ThisHotkey)
+      {
+       Sleep 100
+       POKUS2 := ""
+       Sleep 100
+       Okno2 := WinGetTitle("A")
+       TrayTip "#1", "I pressed Ctrl-Shift-F2 and mapping occurs"
+       SetTimer HideTrayTip, -5000
+       HideTrayTip() {
+                      TrayTip
+                     }
+       Sleep 150
+       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+       Sleep 300
+       Send "{Ctrl up}"
+       POKUS2 := A_Clipboard
+       A_Clipboard := ""
+       Sleep 250
+       WinActivate "F2_F12_clipboard"
+       Sleep 330
+        ControlSend "{End}{Shift down}{Home}", "Edit11", MyGui
+       Sleep 100
+       ControlSend "{Del}", "Edit11", MyGui
+       Sleep 100
+       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit11", MyGui
+       Sleep 360
+       ControlSendText POKUS2, "Edit11", MyGui
+       Sleep 360
+       POKUS2 := ""
+       WinActivate Okno2
+       TrayTip "#2", "End of mapping"
+       Sleep 360
+       SoundBeep 350, 100
+      }
+;    Hotkey "+^F1", ToggleWordWrap012
+;    ToggleWordWrap012(ThisHotkey)
+;      {
+;       Sleep 100
+;       POKUS1 := ""
+;       Sleep 100
+;       Okno1 := WinGetTitle("A")
+;       TrayTip "#1", "I pressed Ctrl-Shift-F1 and mapping occurs"
+;       SetTimer HideTrayTip, -5000
+;       HideTrayTip() {
+;                      TrayTip
+;                     }
+;       Sleep 150
+;       Send "{Ctrl down}c"  ;meno transkriptu z Excelu je clipboarde,
+;       Sleep 300
+;       Send "{Ctrl up}"
+;       POKUS3 := A_Clipboard
+;       A_Clipboard := ""
+;       Sleep 250
+;       WinActivate "Clipboard Secretary v1.01"
+;       Sleep 330
+;       ControlSend "{End}{Shift down}{Home down}", "Edit12", MyGui
+;       Sleep 100
+;       ControlSend "{Del}", "Edit12", MyGui
+;       Sleep 100
+;       ControlSend "{End up}{Shift up}{Home up}{Del up}", "Edit12", MyGui
+;       Sleep 360
+;       ControlSendText POKUS1, "Edit12", MyGui
+;       Sleep 360
+;       POKUS1 := ""
+;       WinActivate Okno1
+;       TrayTip "#2", "End of mapping"
+;       Sleep 360
+;       SoundBeep 350, 100
+;      }
+
+GiveTipF12(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F12TextToSend := Saved.CtrlF12
+  Saved.CtrlF12 := ""
+  Hotkey "^F12", ToggleWordWrap012
+  ToggleWordWrap012(ThisHotkey)
+      {
+       SendText F12TextToSend
+      }
+  TrayTip "#12", "Ctrl-F12 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF11(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F11TextToSend := Saved.CtrlF11
+  Saved.CtrlF11 := ""
+  Hotkey "^F11", ToggleWordWrap011
+  ToggleWordWrap011(ThisHotkey)
+      {
+       SendText F11TextToSend
+      }
+  TrayTip "#11", "Ctrl-F11 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF10(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F10TextToSend := Saved.CtrlF10
+  Saved.CtrlF10 := ""
+  Hotkey "^F10", ToggleWordWrap010
+  ToggleWordWrap010(ThisHotkey)
+      {
+       SendText F10TextToSend
+      }
+  TrayTip "#10", "Ctrl-F10 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF9(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F9TextToSend := Saved.CtrlF9
+  Saved.CtrlF9 := ""
+  Hotkey "^F9", ToggleWordWrap009
+  ToggleWordWrap009(ThisHotkey)
+      {
+       SendText F9TextToSend
+      }
+  TrayTip "#9", "Ctrl-F9 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF8(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F8TextToSend := Saved.CtrlF8
+  Saved.CtrlF8 := ""
+  Hotkey "^F8", ToggleWordWrap008
+  ToggleWordWrap008(ThisHotkey)
+      {
+       SendText F8TextToSend
+      }
+  TrayTip "#8", "Ctrl-F8 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF7(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F7TextToSend := Saved.CtrlF7
+  Saved.CtrlF7 := ""
+  Hotkey "^F7", ToggleWordWrap007
+  ToggleWordWrap007(ThisHotkey)
+     {
+       SendText F7TextToSend
+      }
+  TrayTip "#7", "Ctrl-F7 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF6(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F6TextToSend := Saved.CtrlF6
+  Saved.CtrlF6 := ""
+  Hotkey "^F6", ToggleWordWrap006
+  ToggleWordWrap006(ThisHotkey)
+      {
+       SendText F6TextToSend
+      }
+  TrayTip "#6", "Ctrl-F6 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF5(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F5TextToSend := Saved.CtrlF5
+  Saved.CtrlF5 := ""
+  Hotkey "^F5", ToggleWordWrap005
+  ToggleWordWrap005(ThisHotkey)
+      {
+       SendText F5TextToSend
+      }
+  TrayTip "#5", "Ctrl-F5 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF4(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F4TextToSend := Saved.CtrlF4
+  Saved.CtrlF4 := ""
+  Hotkey "^F4", ToggleWordWrap004
+  ToggleWordWrap004(ThisHotkey)
+      {
+       SendText F4TextToSend
+      }
+  TrayTip "#4", "Ctrl-F4 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF3(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F3TextToSend := Saved.CtrlF3
+  Saved.CtrlF3 := ""
+  Hotkey "^F3", ToggleWordWrap003
+  ToggleWordWrap003(ThisHotkey)
+      {
+       SendText F3TextToSend
+      }
+  TrayTip "#3", "Ctrl-F3 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+GiveTipF2(*)
+{
+  Sleep 50
+  Saved := MyGui.Submit(false)
+  F2TextToSend := Saved.CtrlF2
+  Saved.CtrlF2 := ""
+  Hotkey "^F2", ToggleWordWrap002
+  ToggleWordWrap002(ThisHotkey)
+      {
+       SendText F2TextToSend
+      }
+  TrayTip "#2", "Ctrl-F2 loaded"
+  Sleep 20
+  SoundBeep 750, 50
+}
+
+
+
+
+
+
+ProcessUserInput(*)
+{
+    Sleep 50
+    F9TextToSend := ""
+   F10TextToSend := ""
+   F11TextToSend := ""
+    F12TextToSend := ""
+    F8TextToSend := ""
+    F7TextToSend := ""
+    F6TextToSend := ""
+    F5TextToSend := ""
+    F4TextToSend := ""
+    F3TextToSend := ""
+    F2TextToSend := ""
+    TrayTip "#1", "OK button pressed, changes are being loaded to keys"
+    SavedInput := MyGui.Submit(false)
+    Sleep 200
+   F9TextToSend := SavedInput.CtrlF9
+   F10TextToSend := SavedInput.CtrlF10
+   F11TextToSend := SavedInput.CtrlF11
+    F12TextToSend := SavedInput.CtrlF12
+    F8TextToSend := SavedInput.CtrlF8
+    F7TextToSend := SavedInput.CtrlF7
+    F6TextToSend := SavedInput.CtrlF6
+    F5TextToSend := SavedInput.CtrlF5
+    F4TextToSend := SavedInput.CtrlF4
+    F3TextToSend := SavedInput.CtrlF3
+    F2TextToSend := SavedInput.CtrlF2
+    ;F1TextToSend := SavedInput.CtrlF1
+    Sleep 50
+    SavedInput.CtrlF9 := "{Raw}"
+    SavedInput.CtrlF10 := "{Raw}"
+    SavedInput.CtrlF11 := "{Raw}"
+    SavedInput.CtrlF12 := "{Raw}"
+    SavedInput.CtrlF8 := "{Raw}"
+    SavedInput.CtrlF7 := "{Raw}"
+    SavedInput.CtrlF6 := "{Raw}"
+    SavedInput.CtrlF5 := "{Raw}"
+    SavedInput.CtrlF4 := "{Raw}"
+    SavedInput.CtrlF3 := "{Raw}"
+    SavedInput.CtrlF2 := "{Raw}"
+    ;Saved.CtrlF1 := ""
+
+
+   Hotkey "^F9", ToggleWordWrap09
+    ToggleWordWrap09(ThisHotkey)
+      {
+       SendText F9TextToSend
+      }
+
+   Hotkey "^F10", ToggleWordWrap10
+    ToggleWordWrap10(ThisHotkey)
+      {
+       SendText F10TextToSend
+      }
+
+   Hotkey "^F11", ToggleWordWrap11
+    ToggleWordWrap11(ThisHotkey)
+      {
+       SendText F11TextToSend
+      }
+
+   Hotkey "^F12", ToggleWordWrap12
+    ToggleWordWrap12(ThisHotkey)
+      {
+       SendText F12TextToSend
+      }
+   Hotkey "^F8", ToggleWordWrap08
+    ToggleWordWrap08(ThisHotkey)
+      {
+       SendText F8TextToSend
+      }
+   Hotkey "^F7", ToggleWordWrap07
+    ToggleWordWrap07(ThisHotkey)
+      {
+       SendText F7TextToSend
+      }
+   Hotkey "^F6", ToggleWordWrap06
+    ToggleWordWrap06(ThisHotkey)
+      {
+       SendText F6TextToSend
+      }
+   Hotkey "^F5", ToggleWordWrap05
+    ToggleWordWrap05(ThisHotkey)
+      {
+       SendText F5TextToSend
+      }
+   Hotkey "^F4", ToggleWordWrap04
+    ToggleWordWrap04(ThisHotkey)
+      {
+       SendText F4TextToSend
+      }
+   Hotkey "^F3", ToggleWordWrap03
+    ToggleWordWrap03(ThisHotkey)
+      {
+       SendText F3TextToSend
+      }
+   Hotkey "^F2", ToggleWordWrap02
+    ToggleWordWrap02(ThisHotkey)
+      {
+       SendText F2TextToSend
+      }
+     Sleep 50
+     TrayTip "#", "Changes of keys are being loaded ..."
+     Sleep 50
+   ;   Hotkey "^F1", ToggleWordWrap11
+   ;    ToggleWordWrap11(ThisHotkey)
+   ;      {
+   ;       Send F1TextToSend
+   ;      }
+}
+ProcessUserInput3(*)
+{
+
+   TrayTip "#3", "Initiating RESET"
+   Sleep 200
+    POKUS12 := ""
+    POKUS11 := ""
+    POKUS10 := ""
+    POKUS9 := ""
+    POKUS8 := ""
+    POKUS7 := ""
+    POKUS6 := ""
+    POKUS5 := ""
+    POKUS4 := ""
+    POKUS3 := ""
+    POKUS2 := ""
+
+    F9TextToSend := ""
+   F10TextToSend := ""
+   F11TextToSend := ""
+    F12TextToSend := ""
+    F8TextToSend :=  ""
+    F7TextToSend :=  ""
+    F6TextToSend :=  ""
+    F5TextToSend :=  ""
+    F4TextToSend :=  ""
+    F3TextToSend :=  ""
+    F2TextToSend :=  ""
+
+    ControlSetText POKUS12, "Edit1", MyGui
+    Sleep 10
+    ControlSetText POKUS11, "Edit2", MyGui
+    Sleep 10
+    ControlSetText POKUS10, "Edit3", MyGui
+    Sleep 10
+    ControlSetText POKUS9, "Edit4", MyGui
+    Sleep 10
+    ControlSetText POKUS8, "Edit5", MyGui
+    Sleep 10
+    ControlSetText POKUS7, "Edit6", MyGui
+    Sleep 10
+    ControlSetText POKUS6, "Edit7", MyGui
+    Sleep 10
+    ControlSetText POKUS5, "Edit8", MyGui
+    Sleep 10
+    ControlSetText POKUS4, "Edit9", MyGui
+    Sleep 10
+    ControlSetText POKUS3, "Edit10", MyGui
+    Sleep 10
+    ControlSetText POKUS2, "Edit11", MyGui
+    Sleep 10
+
+
+
+    Hotkey "^F9", ToggleWordWrap009
+    ToggleWordWrap009(ThisHotkey)
+      {
+       SendText F9TextToSend
+      }
+
+   Hotkey "^F10", ToggleWordWrap010
+    ToggleWordWrap010(ThisHotkey)
+      {
+       SendText F10TextToSend
+      }
+
+   Hotkey "^F11", ToggleWordWrap011
+    ToggleWordWrap011(ThisHotkey)
+      {
+       SendText F11TextToSend
+      }
+
+   Hotkey "^F12", ToggleWordWrap012
+    ToggleWordWrap012(ThisHotkey)
+      {
+       SendText F12TextToSend
+      }
+   Hotkey "^F8", ToggleWordWrap008
+    ToggleWordWrap008(ThisHotkey)
+      {
+       SendText F8TextToSend
+      }
+   Hotkey "^F7", ToggleWordWrap007
+    ToggleWordWrap007(ThisHotkey)
+      {
+       SendText F7TextToSend
+      }
+   Hotkey "^F6", ToggleWordWrap006
+    ToggleWordWrap006(ThisHotkey)
+      {
+       SendText F6TextToSend
+      }
+   Hotkey "^F5", ToggleWordWrap005
+    ToggleWordWrap005(ThisHotkey)
+      {
+       SendText F5TextToSend
+      }
+   Hotkey "^F4", ToggleWordWrap004
+    ToggleWordWrap004(ThisHotkey)
+      {
+       SendText F4TextToSend
+      }
+   Hotkey "^F3", ToggleWordWrap003
+    ToggleWordWrap003(ThisHotkey)
+      {
+       SendText F3TextToSend
+      }
+   Hotkey "^F2", ToggleWordWrap002
+    ToggleWordWrap002(ThisHotkey)
+      {
+       SendText F2TextToSend
+      }
+}
+;   Hotkey "^F1", ToggleWordWrap11
+;    ToggleWordWrap11(ThisHotkey)
+;      {
+;       Send F1TextToSend
+;      }
+;
+;    TrayTip "#6", "Press OK for memory deletion"
+;    SoundBeep 750, 50
+;    SoundBeep 950, 75
+;    Sleep 2800
+
+ProcessUserInput5(*)
+{
+ Sleep 800
+ Sleep 50
+ TrayTip "#", "Program terminated"
+ Sleep 50
+ MyGui.Destroy()
+ Sleep 300
+ ExitApp
+}
+
+
+
+
+
+
