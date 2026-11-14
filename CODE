@@ -1,4 +1,4 @@
-; Code written in AUTOHOTKEY 2.0.6 programming language
+; Code written in AUTOHOTKEY 2.0.6 programing language
 
 Sleep 1200
 Lokalizacia := A_InitialWorkingDir
